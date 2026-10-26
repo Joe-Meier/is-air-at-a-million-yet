@@ -1,0 +1,8 @@
+{
+  "handle": "air.hq",
+  "updated": "2026-10-26T13:30:00.000Z",
+  "counts": [
+    { "date": "2025-12-26T12:00:00-05:00", "followers": 10000, "posts": 179, "source": "screenshot" },
+    { "date": "2026-10-26T09:30:00-04:00", "followers": 100000, "posts": 459, "following": 554, "source": "screenshot" }
+  ]
+}

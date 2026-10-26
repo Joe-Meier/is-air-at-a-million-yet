@@ -1,0 +1,432 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Is Air at a Million Yet?</title>
+<meta name="description" content="Tracking @air.hq's run at 1,000,000 Instagram followers by October 26, 2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@0;1&display=swap" rel="stylesheet">
+<style>
+/* Layout: one enormous answer, isitchristmas-style, then the stats underneath.
+   Courier only, regular weight only. White on charcoal, one look for every viewer. */
+:root{
+  --paper:#2b2b2b;
+  --ink:#ffffff;
+  --type:"Courier Prime","Courier New",Courier,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--type);font-size:17px;font-weight:400;line-height:1.5}
+h1,h2,b,strong{font-weight:400}
+[hidden]{display:none!important}
+a{color:inherit}
+button{font:inherit}
+.more:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+
+/* Hero */
+.hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding-block:clamp(32px,8vh,96px) clamp(40px,7vh,80px)}
+.ask{margin:0;font-size:15px;text-wrap:balance}
+.ask a{text-decoration:underline;text-underline-offset:3px}
+.ask a:hover{background:var(--ink);color:var(--paper);text-decoration:none}
+.answer{margin:0;font-size:clamp(128px,36vw,340px);line-height:.75;letter-spacing:-.04em}
+.answer.yes{background:var(--ink);color:var(--paper);padding:0 .12em .06em}
+.line{margin:0;max-width:42ch;min-height:5.4em;display:flex;align-items:center;justify-content:center;font-size:clamp(18px,2vw,24px);line-height:1.35;transition:opacity .28s ease,transform .28s ease}
+.line>span{text-wrap:balance}
+.line.out{opacity:0;transform:translateY(6px)}
+.n{white-space:nowrap}
+.more{display:inline-block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--ink);background:none;border:1px solid var(--ink);padding:9px 16px;cursor:pointer}
+.more:hover{background:var(--ink);color:var(--paper)}
+
+/* Stats */
+.section-label{margin:0 0 12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.ledger{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--ink);border:1px solid var(--ink);border-top-width:2px}
+.cell{background:var(--paper);padding:20px 20px 24px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.k{font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+.v{font-size:clamp(26px,3.4vw,44px);line-height:1.1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.v.sm{font-size:clamp(24px,3vw,38px)}
+.hl{background:var(--ink);color:var(--paper);padding:0 .14em}
+.meta{font-size:14px;line-height:1.45}
+@media (max-width:900px){.ledger{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.ledger{grid-template-columns:minmax(0,1fr)}}
+
+/* Race */
+.race{display:grid;gap:24px;padding-block:44px 8px}
+.track-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:8px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.track-head b{letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.track{position:relative;height:16px;border:1.5px solid var(--ink)}
+.fill{position:absolute;top:0;bottom:0;left:0;width:0;background:var(--ink)}
+.tick{position:absolute;top:-7px;bottom:-7px;left:0;width:2px;margin-left:-1px;background:var(--ink)}
+.legend{margin:0;font-size:14px}
+
+/* Coda */
+.coda{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:32px;align-items:end;padding-block:72px 44px;border-bottom:1px solid var(--ink)}
+.coda blockquote{margin:0}
+.quote{margin:0 0 10px;font-size:clamp(22px,3vw,36px);line-height:1.2;text-wrap:balance}
+.coda cite{font-style:normal;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.coda cite a{text-decoration:underline;text-underline-offset:3px}
+.coda cite a:hover{background:var(--ink);color:var(--paper);text-decoration:none}
+.bookmarked{margin:26px 0 0;font-size:clamp(40px,6vw,76px);line-height:.95;letter-spacing:-.03em}
+.cta-box{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.cta{display:inline-flex;align-items:center;gap:10px;font-size:15px;text-decoration:none;background:var(--ink);color:var(--paper);border:1.5px solid var(--ink);padding:14px 18px}
+.cta:hover{background:var(--paper);color:var(--ink)}
+.cta-note{margin:0;font-size:14px;max-width:34ch}
+.remind{display:flex;flex-direction:column;gap:10px;margin-top:18px;padding-top:18px;border-top:1px solid var(--ink);align-self:stretch}
+.remind-row{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:720px){.coda{grid-template-columns:minmax(0,1fr);padding-block:56px 36px}}
+
+/* Fine print */
+.fine{padding-block:24px 8px;font-size:13px;line-height:1.55}
+.fine p{margin:0}
+
+@media (prefers-reduced-motion:reduce){.line{transition:none}}
+</style>
+
+<meta property="og:title" content="Is Air at a Million Yet?">
+<meta property="og:description" content="Tracking @air.hq's run at 1,000,000 Instagram followers by October 26, 2027.">
+<meta name="twitter:card" content="summary">
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <p class="ask">Does <a href="https://www.instagram.com/air.hq/" target="_blank" rel="noopener">@air.hq</a> have 1,000,000 Instagram followers yet?</p>
+    <h1 class="answer" id="answer">no.</h1>
+    <p class="line" id="line"><span id="lineText">To get there, Air needs a new follower every <span class="n">35</span> seconds until October 26, 2027.</span></p>
+    <button class="more" id="more" type="button">Another stat</button>
+  </header>
+
+  <section aria-labelledby="ledger-title">
+    <h2 class="section-label" id="ledger-title"><span>The stats</span><span>Deadline: Oct 26, 2027</span></h2>
+    <div class="ledger">
+      <div class="cell">
+        <span class="k">Followers, last count</span>
+        <span class="v"><span class="hl" id="have">100,000</span></span>
+        <span class="meta" id="haveMeta">Counted Oct 26, 2026</span>
+      </div>
+      <div class="cell">
+        <span class="k">Still needed</span>
+        <span class="v" id="need">900,000</span>
+        <span class="meta" id="needMeta">9x what they have now.</span>
+      </div>
+      <div class="cell">
+        <span class="k">Odds</span>
+        <span class="v" id="odds">8.4%</span>
+      </div>
+      <div class="cell">
+        <span class="k">Time left</span>
+        <span class="v sm" id="clock">365d 14:30:00</span>
+      </div>
+      <div class="cell">
+        <span class="k">Needed per day</span>
+        <span class="v" id="perDay">2,462</span>
+        <span class="meta" id="perDayMeta">One every 35 seconds, on average.</span>
+      </div>
+      <div class="cell">
+        <span class="k">The curve says, right now</span>
+        <span class="v" id="curve">100,000.000</span>
+        <span class="meta">Steady compounding from 100K to 1M puts Air here this second. Decimals are partial people.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="race" aria-label="Progress against the year">
+    <div>
+      <div class="track-head"><span>Year used</span><b id="yearPct">0.00%</b></div>
+      <div class="track"><div class="fill" id="yearFill"></div></div>
+    </div>
+    <div>
+      <div class="track-head"><span>Followers gained, of 900,000</span><b id="folPct">0.00%</b></div>
+      <div class="track"><div class="fill" id="folFill"></div><div class="tick" id="tick"></div></div>
+    </div>
+    <p class="legend">The notch is where the curve says Air should be today. The second bar moves when the count does.</p>
+  </section>
+
+  <section class="coda">
+    <div>
+      <blockquote>
+        <p class="quote">“1 million this time next year. Bookmark it.”</p>
+        <cite><a href="https://www.linkedin.com/in/arieljrubin/" target="_blank" rel="noopener">Posted on LinkedIn, October 26, 2026 ↗</a></cite>
+      </blockquote>
+      <p class="bookmarked">Bookmarked.</p>
+    </div>
+    <div class="cta-box">
+      <a class="cta" id="cta" href="https://www.instagram.com/air.hq/" target="_blank" rel="noopener">Be follower #100,001 ↗</a>
+      <p class="cta-note">Every follow helps. Each one is 0.0001% of a million.</p>
+      <div class="remind">
+        <span class="k">Remind me on Oct 26, 2027</span>
+        <div class="remind-row">
+          <button class="more" id="ics" type="button">iPhone / Apple Calendar</button>
+          <a class="more" id="gcal" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Is%20Air%20at%20a%20million%20yet%3F&amp;dates=20271026/20271027" target="_blank" rel="noopener">Google Calendar ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fine">
+    <p>Not affiliated with Air. Rooting for them, mostly.</p>
+  </footer>
+</main>
+
+<script>
+/* ============================================================
+   Fallback numbers. On the live site, data.json takes over:
+   a GitHub Action adds Instagram's count to it every morning.
+   ============================================================ */
+const AIR = {
+  goal: 1000000,
+  start: 100000,                              // followers on the day of the promise
+  promisedAt: "2026-10-26T09:30:00-04:00",
+  deadline:   "2027-10-27T00:00:00-04:00",    // midnight at the end of Oct 26, 2027
+  following: 554,
+  counts: [
+    { date: "2025-12-26T12:00:00-05:00", followers: 10000,  posts: 179 },
+    { date: "2026-10-26T09:30:00-04:00", followers: 100000, posts: 459 },
+  ],
+};
+
+(() => {
+  const DAY = 864e5, MONTH = 30.437 * DAY;
+  const T0 = Date.parse(AIR.promisedAt), T1 = Date.parse(AIR.deadline);
+  let counts, latest, origin, base;
+  function setCounts(list) {
+    const clean = list.map(c => ({ ...c, t: Date.parse(c.date) }))
+      .filter(c => Number.isFinite(c.t) && c.followers > 0)
+      .sort((a, b) => a.t - b.t);
+    if (!clean.length) return false;
+    counts = clean;
+    latest = counts[counts.length - 1];
+    origin = counts[0];
+    // Pace window: the newest count at least 4 weeks older than the latest one, else the oldest.
+    base = null;
+    for (let i = counts.length - 2; i >= 0; i--) {
+      if (latest.t - counts[i].t >= 28 * DAY) { base = counts[i]; break; }
+    }
+    if (!base && counts.length > 1) base = counts[0];
+    return true;
+  }
+  setCounts(AIR.counts);
+  const opened = Date.now();
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const nf = d => new Intl.NumberFormat("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const F = [nf(0), nf(1), nf(2), nf(3)];
+  const f = (x, d = 0) => F[d].format(x);
+  const clamp = (x, a, b) => Math.min(Math.max(x, a), b);
+  const pct = (x, d = 1) => f(x * 100, d) + "%";
+  const mult = x => f(x, Math.abs(x - Math.round(x)) < 0.05 ? 0 : 1) + "x";
+  const growth = m => f((m - 1) * 100, 1) + "%";
+  const day = t => new Date(t).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "America/New_York" });
+  const pad = x => String(x).padStart(2, "0");
+  const monthYear = t => new Date(t).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "America/New_York" });
+  const spanLabel = ms => { const d = Math.round(ms / DAY); return d < 60 ? d + " days" : Math.round(ms / MONTH) + " months"; };
+  const $ = id => document.getElementById(id);
+  const n = v => `<span class="n">${v}</span>`;
+
+  const curveAt = t => AIR.start * Math.pow(AIR.goal / AIR.start, clamp((t - T0) / (T1 - T0), 0, 1));
+
+  function read(now) {
+    const s = {};
+    s.got = latest.followers >= AIR.goal;
+    s.over = now >= T1;
+    s.need = Math.max(AIR.goal - latest.followers, 0);
+    s.msLeft = Math.max(T1 - now, 0);
+    s.daysLeft = s.msLeft / DAY;
+    s.perDay = s.daysLeft > 0 ? s.need / s.daysLeft : 0;
+    s.secsEach = s.perDay > 0 ? 86400 / s.perDay : 0;
+    s.curveNow = curveAt(now);
+    s.vsCurve = latest.followers - curveAt(latest.t);
+    s.freshCurve = latest.t - T0 < DAY && Math.abs(s.vsCurve) < 1;
+    s.yearUsed = clamp((now - T0) / (T1 - T0), 0, 1);
+    s.progress = clamp((latest.followers - AIR.start) / (AIR.goal - AIR.start), 0, 1);
+    s.curveProgress = clamp((s.curveNow - AIR.start) / (AIR.goal - AIR.start), 0, 1);
+    s.following = latest.following ?? AIR.following;
+    if (base && latest.t > base.t) {
+      const span = latest.t - base.t;
+      s.span = span;
+      s.pastPerDay = (latest.followers - base.followers) / (span / DAY);
+      s.pastMonthly = Math.pow(latest.followers / base.followers, MONTH / span);
+      const dp = latest.posts - base.posts;
+      s.perPost = dp > 0 && latest.followers > base.followers ? (latest.followers - base.followers) / dp : null;
+    }
+    s.needMonthly = s.msLeft > 0 && s.need > 0 ? Math.pow(AIR.goal / latest.followers, MONTH / s.msLeft) : 1;
+    s.odds = oddsOf(s);
+    return s;
+  }
+
+  // Their monthly growth vs. the growth they need, discounted for stamina, through a logistic curve.
+  function oddsOf(s) {
+    if (s.got) return 1;
+    if (s.over) return 0;
+    if (!s.pastMonthly || s.pastMonthly <= 1) return 0.0005;
+    const x = Math.log(s.pastMonthly) / Math.log(s.needMonthly);
+    const stamina = Math.pow(0.5, s.msLeft / MONTH / 12);
+    return 1 / (1 + Math.exp(-6 * (x * stamina - 1)));
+  }
+  const oddsText = p => p >= 1 ? "100%" : p > 0.999 ? ">99.9%" : p <= 0 ? "0%" : p < 0.001 ? "<0.1%" : pct(p, 1);
+
+  const since = ms => {
+    const sec = Math.round(ms / 1000);
+    if (sec < 60) return sec + " seconds";
+    const m = Math.round(sec / 60);
+    return m === 1 ? "1 minute" : m + " minutes";
+  };
+
+  const LINES_GOT = [
+    () => `They did it. ${n(f(latest.followers))} followers. Somebody owes somebody an apology.`,
+    () => `“Bookmark it,” they said. We did. Fair is fair.`,
+    () => `This page now has nothing left to do. Congratulations to everyone involved.`,
+  ];
+  const LINES_OVER = [
+    () => `The year is up. Air finished at ${n(f(latest.followers))} followers.`,
+    () => `That's ${n(pct(latest.followers / AIR.goal))} of a million. Not nothing.`,
+    () => `You can remove the bookmark now.`,
+  ];
+  const LINES = [
+    s => `To get there, Air needs a new follower every ${n(f(s.secsEach))} seconds until October 26, 2027.`,
+    s => `That's ${n(f(s.perDay))} new followers a day. Weekends included. Christmas included.`,
+    s => origin.t < T0 - 30 * DAY && `${n(monthYear(origin.t))} to ${n(monthYear(T0))}: ${n(mult(AIR.start / origin.followers))}. ${n(monthYear(T0))} to ${n(monthYear(T1 - DAY))}: ${n(mult(AIR.goal / AIR.start))} again. Lines go up forever, famously.`,
+    s => s.perPost && `At ${n(f(s.perPost))} new followers per post, Air needs ${n(f(s.need / s.perPost))} more posts. That's ${n(f(s.need / s.perPost / s.daysLeft, 1))} a day, starting now.`,
+    s => `Air needs to fill Yankee Stadium ${n(f(s.need / 46537))} more times and get everyone to follow on the way out.`,
+    s => {
+      const ms = Date.now() - opened;
+      if (ms < 15000) return null;
+      return `You've been on this page for ${n(since(ms))}. Air needed ${n(f(s.perDay * ms / DAY, 1))} new followers in that time.`;
+    },
+    s => `To hit a million, about 1 in every ${n("3,000")} people on Instagram has to follow Air. Ask around.`,
+    s => `Odds of 1,000,000 by the deadline: ${n(oddsText(s.odds))}. Odds of a LinkedIn post about it either way: ${n("100%")}.`,
+    s => `Air follows ${n(f(s.following))} accounts. If every one follows back, that covers ${n(pct(s.following / s.need, 2))} of the gap.`,
+    s => s.pastPerDay > 0 && `In a straight line, Air needs ${n(mult(s.perDay / s.pastPerDay))} the pace of the last ${spanLabel(s.span)}. ${s.pastMonthly >= s.needMonthly ? "On a curve, they're fine. They'll be using the curve." : "On a curve, it's still a lot."}`,
+    s => s.pastMonthly && `Required: ${n(growth(s.needMonthly))} growth a month, compounding. Last ${spanLabel(s.span)}: ${n(growth(s.pastMonthly))} a month. ${s.pastMonthly >= s.needMonthly ? "Honestly, respect." : "Time is right on schedule."}`,
+    s => s.freshCurve ? `At the last count, Air was exactly on the curve. In fairness, the curve had just started.`
+       : s.vsCurve >= 0 ? `At the last count, Air was ${n(f(s.vsCurve))} followers ahead of the curve. Savor it.`
+       : `At the last count, Air was ${n(f(-s.vsCurve))} followers behind the curve. The curve does not care.`,
+    s => `The count updates every morning. The deadline does not.`,
+    s => `This page will say YES the moment it's true. The code is ready. It's one line.`,
+    s => `${n(f(Math.floor(s.daysLeft)))} days left. Nobody panic.`,
+  ];
+
+  let idx = 0, timer = null;
+  function pool(s) { return s.got ? LINES_GOT : s.over ? LINES_OVER : LINES; }
+  function lineAt(i) {
+    const s = read(Date.now());
+    const list = pool(s);
+    for (let k = 0; k < list.length; k++) {
+      const j = (i + k) % list.length;
+      const text = list[j](s);
+      if (text) return { j, text };
+    }
+    return { j: 0, text: "" };
+  }
+  function showLine(i) {
+    const { j, text } = lineAt(i);
+    idx = j;
+    const box = $("line"), inner = $("lineText");
+    if (reduce) { inner.innerHTML = text; return; }
+    box.classList.add("out");
+    setTimeout(() => { inner.innerHTML = text; box.classList.remove("out"); }, 280);
+  }
+  function startRotation() {
+    clearInterval(timer);
+    timer = setInterval(() => showLine(idx + 1), 7000);
+  }
+  $("more").addEventListener("click", () => { showLine(idx + 1); startRotation(); });
+
+  const last = {};
+  const set = (id, text) => { if (last[id] !== text) { last[id] = text; $(id).textContent = text; } };
+
+  function paint() {
+    const now = Date.now();
+    const s = read(now);
+
+    set("answer", s.got ? "yes." : "no.");
+    $("answer").classList.toggle("yes", s.got);
+
+    set("have", f(latest.followers));
+    set("haveMeta", "Counted " + day(latest.t));
+
+    set("need", f(s.need));
+    set("needMeta", s.need ? mult(s.need / latest.followers) + " what they have now." : "Nothing. They did it.");
+    set("odds", oddsText(s.odds));
+
+    const d = Math.floor(s.msLeft / DAY);
+    const h = Math.floor(s.msLeft / 36e5) % 24;
+    const m = Math.floor(s.msLeft / 6e4) % 60;
+    const sec = Math.floor(s.msLeft / 1e3) % 60;
+    set("clock", `${d}d ${pad(h)}:${pad(m)}:${pad(sec)}`);
+
+    set("perDay", f(s.perDay));
+    set("perDayMeta", s.secsEach ? `One every ${f(s.secsEach)} seconds, on average.` : "None. It's over.");
+    set("curve", f(s.curveNow, 3));
+
+    set("yearPct", pct(s.yearUsed, 2));
+    set("folPct", pct(s.progress, 2));
+    $("yearFill").style.width = (s.yearUsed * 100) + "%";
+    $("folFill").style.width = (s.progress * 100) + "%";
+    $("tick").style.left = (s.curveProgress * 100) + "%";
+
+    set("cta", s.got ? "Follow @air.hq ↗" : `Be follower #${f(latest.followers + 1)} ↗`);
+  }
+
+  // Calendar reminder for deadline day: all-day event on Oct 26, 2027, alert at 9am.
+  const REMIND = { start: "20271026", end: "20271027", title: "Is Air at a million yet?" };
+  const framed = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+  const siteUrl = framed ? "" : location.href.split("#")[0];
+  const remindNote = "Deadline day. “1 million this time next year. Bookmark it.” Check instagram.com/air.hq" + (siteUrl ? " or " + siteUrl : "");
+  $("gcal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(REMIND.title)
+    + "&dates=" + REMIND.start + "/" + REMIND.end
+    + "&details=" + encodeURIComponent(remindNote);
+
+  const icsEsc = t => t.replace(/\\/g, "\\\\").replace(/;/g, "\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  const fold = line => line.length <= 60 ? line : line.match(/.{1,60}/g).join("\r\n ");
+  function icsText() {
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+    return [
+      "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Is Air at a Million Yet//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      "UID:air-hq-1m-20271026@is-air-at-a-million-yet",
+      "DTSTAMP:" + stamp,
+      "DTSTART;VALUE=DATE:" + REMIND.start,
+      "DTEND;VALUE=DATE:" + REMIND.end,
+      "SUMMARY:" + icsEsc(REMIND.title),
+      "DESCRIPTION:" + icsEsc(remindNote),
+      siteUrl ? "URL:" + siteUrl : null,
+      "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEsc(REMIND.title), "TRIGGER:PT9H", "END:VALARM",
+      "END:VEVENT", "END:VCALENDAR",
+    ].filter(Boolean).map(fold).join("\r\n") + "\r\n";
+  }
+  // Inside the Claude preview, file downloads are blocked, so the .ics button only shows on the deployed site.
+  if (framed) {
+    $("ics").hidden = true;
+  } else {
+    $("ics").addEventListener("click", () => {
+      const url = URL.createObjectURL(new Blob([icsText()], { type: "text/calendar;charset=utf-8" }));
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "air-1-million-reminder.ics";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 4000);
+    });
+  }
+
+  // On the live site, data.json holds the daily counts. The numbers in AIR are the fallback.
+  if (!framed) {
+    fetch("data.json", { cache: "no-store" })
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => { if (d && Array.isArray(d.counts) && setCounts(d.counts)) paint(); })
+      .catch(() => {});
+  }
+
+  paint();
+  $("lineText").innerHTML = lineAt(0).text;
+  setInterval(paint, reduce ? 1000 : 100);
+  startRotation();
+})();
+</script>
+</body>
+</html>
